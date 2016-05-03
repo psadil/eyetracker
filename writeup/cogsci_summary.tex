@@ -1,0 +1,159 @@
+% 
+% Annual Cognitive Science Conference
+% Sample LaTeX Two-Page Summary -- Proceedings Format
+% 
+
+% Original : Ashwin Ram (ashwin@cc.gatech.edu)       04/01/1994
+% Modified : Johanna Moore (jmoore@cs.pitt.edu)      03/17/1995
+% Modified : David Noelle (noelle@ucsd.edu)          03/15/1996
+% Modified : Pat Langley (langley@cs.stanford.edu)   01/26/1997
+% Latex2e corrections by Ramin Charles Nakisa        01/28/1997 
+% Modified : Tina Eliassi-Rad (eliassi@cs.wisc.edu)  01/31/1998
+% Modified : Trisha Yannuzzi (trisha@ircs.upenn.edu) 12/28/1999 (in process)
+% Modified : Mary Ellen Foster (M.E.Foster@ed.ac.uk) 12/11/2000
+% Modified : Ken Forbus                              01/23/2004
+% Modified : Eli M. Silk (esilk@pitt.edu)            05/24/2005
+% Modified : Niels Taatgen (taatgen@cmu.edu)         10/24/2006
+% Modified : David Noelle (dnoelle@ucmerced.edu)     11/19/2014
+
+%% Change "letterpaper" in the following line to "a4paper" if you must.
+
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{cogsci}
+\usepackage{pslatex}
+\usepackage{apacite}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[export]{adjustbox}
+
+
+\title{Convolutional Network for eye-tracking}
+ 
+\author{{\large \bf Patrick Sadil (psadil@psych.umass.edu)} \\
+  Department of Psychological and Brain Sciences
+}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Abstract}
+
+Historically, conducting eye-tracking experiments could be prohibitively expensive, relying on machines that cost tens of thousands of dollars. Relatively recently, eye-tracking equipment has been made available that costs just a few hundred dollars. However, these cheaper eye-trackers have been shown to be unable to achieve the $0.5^{\circ}$ required by in many experimentations \cite{zugal2015low}. This article introduces the possibility of leveraging the progress made by neural networks to achieve the required eye-tracking precision using just a webcamera. Although the results are promising, more work would be required to develop a usable eye-tracker.
+
+
+\section{Introduction}
+
+Development of the first eye-tracker is accredited to \citeA{buswell1922}. That eye-tracker monitored and recorded light reflecting from participant's eyes. Since then, more advanced hardware has been developed that assures users consistent performance at a visual angle of $0.5^{\circ}$ (e.g., www.eyetracking.com). Unlike eye-trackers in previous decades, the newest models are versatile and portable enough to be use outside of laboratory settings. For example, eye-tracking systems developed for a vehicle environment have been used to study the effects of fatigue while driving \cite{hopstaken2016}, classification systems of driver competence based on eye-tracking results have been proposed \cite{zhang2015classification}, and prototype systems are being developed for real-time driver assistance \cite{ghosh2015real}. However, although such eye-tracking systems can guarantee high performance, their cost can be prohibitively high. 
+
+Cheaper options have begun to become available. \citeA{zugal2015low} documents an exploration with a \emph{Gazepoint GP3} (http://www.gazept.com/). Although this system costs only around \textdollar$500$, the authors note that the accuracy of this system will not be good enough for certain specific kinds of research. Gazepoint advertises their \emph{Gasepoint GP3} as having $0.5-1^{\circ}$. \citeA{zugal2015low} tested participants with an unconstrained head at an average of $65cm$ viewing distance---recommended by the manufacturer. With this, they were reliably able to measure fixations with an $8mm$ margin of error. This is well within the $1cm$ error predicted by $1^{\circ}$ accuracy, though slightly below $0.5^{\circ}$. Moreover, the \emph{Gasepoint GP3} proved very sensitive to fluctuations in ambient luminance changes when windows were open, reflections from glasses, and features of participants (such as 'particularly gloss hair'). Although this issues are all manageable in many research settings, they would preclude a variety of experimentation (such as gaze-tracking while driving).
+
+The goal of this project, then, was the exploration of whether a precise enough eye-tracker, robust to a variety of noise in the image, could be developed using the webcamera of a laptop computer. Although the development of a full-scale, research grade eye-tracker is well beyond the scope of this project, the results suggest that these methodologies may be worth pursuing.  
+
+\subsection{Related Work}
+
+The attempt to utilize neural networks on gaze-tracking is at least two decades ago, by \citeA{baluja1994non}. One of the challenges posed by training neural networks for gaze-tracking is the lack of standardized datasets. To the best of the author's knowledge, no standardized datasets exist that are universally utilized. However, this is not to suggest that efforts have not been made to produce such standardized data. For example, \citeA{zhang15cvpr} introduced a dataset in which over 200,000 images were collected from 15 participants. However, those data consist of images that only contain the eyes of the participants. the cropping was completed by a facial detector trained on a 10,000 image subset of the data which was manually annotated. Although useful, the success of their methods relies first on the success of their facial keypoint detector. Additionally, citeA{baluja1994non} trained their network to estimate gaze angle, rather than fixation location. This is useful for detecting the location of a fixation only when the position of the head can be accurately estimated. This estimation of the head orientation requires an additional 'hand-wiring' of their architecture. A difference between the work of citeA{baluja1994non} and the present study is that the present study is attempting to allow the network to estimate fixation location directly. 
+
+Another interesting approach was taken by \citeA{wood2015iccv}. These authors introduced a synthetic dataset that contains over 10,000 photo-realistic images. Such generated datasets introduce the exciting possibility of tightly controlled experimentation on gaze-trackers; by having explicit control over variables such has head position, environmental illumination, and eye-socket textures, a synthetic dataset provides the opportunity to better understand the kinds of features that help a network learn quickly and generalize well. However, networks designed around this kind of data must filter out any portion of a given image until only the eye remains. So, again, the use of this kind of dataset hinges critically on the success of not only a network designed to track gaze direction, but also on a network designed to reliably locate eyes in an image. 
+
+As a third related example, \citeA{huang2015tabletgaze} conducted an experiment with 51 participants, manipulated body position, and recorded using the front-facing camera of a Samsung Galaxy S 10.5 tablet. Because they were actively varying the distance between participant and screen, they measured accuracy not in terms of angular error, but in terms of Euclidean Distance away from ground-truth. Their best performing algorithms achieved a MSE of $3.17 \pm 2.10 cm$. Although this is a remarkable achievement for the variety of images they were working wit, this would not be sufficient in a research setting.
+
+\section{Network Design}
+
+All experiments were written with Torch7. Updated code can be found at https://github.com/psadil/eyetracker.git. 
+
+\subsection{Model Architecture}
+
+A diagram of the network can be seen in Figure~\ref{model}. A convolutional architecture \cite{lecun1998gradient} was used because this was known to sample over all regions of an input image. That is, the covolutional kernel was assumed to be able to locate features relevant to the gaze-direction regardless of where the eyes were in the image. Outputs of the convolutional, pooling, and dense hidden layers were Rectified Linear Units \cite{glorot2011deep}. 
+
+
+\begin{figure}[t]
+\includegraphics[width=8cm]{network}
+\caption{Architecture of network. Note that the output layer consisted of two vectors, each one corresponding to a pixel coordinate.} 
+\label{model}
+\centering
+\end{figure}
+
+\subsubsection{Data}
+
+Eye-tracking data were collected from a single participant (the author). These data were collected in a variety of locations that varied in overall luminance and background. 
+
+The participant was instructed to monitor a single green dot (5 pixel radius, Figure~\ref{task}). The dot was randomly presented in a 96x96 pixel patch in the center of the screen of a laptop computer. The camera collecting the data was located at the top of the screen.
+
+The location of the dot shifted locations every $500ms$. This duration allowed the participant time to saccade and relax into a stable fixation before each image was taken. Images were collected using the camera native to an MSI GE62 2QD Apache Pro laptop. Images were taken as 120x160 pixel RGB pictures. Head position, distance to screen, and image clutter were all varied. Head positions ranged from looking straight at the camera and looking away at a $90^{\circ}$ angle. Distances ranged from within $10cm$ of the camera, to $150cm$ away from the camera (though, distance was, on average, $60cm$ away from the camera). Clutter included glasses, hands, other people, cell phones, and a variety of other objects in the background. However, although the data collected varied in these significant ways, none of this variance was systematic. 
+
+In total, $11,319$ images were collected. A randomly selected $\frac{1}{10}$ of those were reserved for validation.
+
+\subsubsection{Hyperparameters}
+
+To speed up learning, the network was initialized with momentum, dropout \cite{srivastava2014dropout}, and image standardization. These parameters can be seen in Table~\ref{tricks}. Additionally, RGB images were transformed into YUV space. The network was trained on batches of 128 images.
+
+
+\begin{table}[b]
+\begin{center} 
+\caption{Learning-related hyperparameters} 
+\label{tricks} 
+\vskip 0.12in
+\begin{tabular}{ll} 
+\hline
+Parameter    &  Value \\
+\hline
+Learning Rate  &  0.2 \\
+Momentum        &   0.5 \\
+Dropout, by layer   &   (0.2,0.5,0.5) \\
+Batch Training  & 128 images per batch \\
+\hline
+\end{tabular} 
+\end{center} 
+\end{table}
+
+\subsubsection{Criterion}
+
+The target data was a single, (x,y) coordinate in pixel space (two vectors, each of length 96). However, the author found that the network tended to learn slightly better when the actual target was blurred with gaussian noise. That is, in addition to the target pixel in each of the of the target vectors being set at 1, the neighboring values of the target vector were offset from 0 according to a gaussian distribution with standard deviation of 20. Although head position was varied significantly, the participant was, on average, about $60cm$ away from the screen. As discussed by \citeA{zugal2015low}, an error of $1^{\circ}$ at this distance translates to an approximate 42 pixel margin of error. So, a gaussian with standard deviation 20 places over 90\% of it's density within 42 pixels of the ground-truth target. Hence, successful training with the blurred target would entail achievement of $1^{\circ}$ precision.
+
+The gaussian blur enabled the to minimize Kullback-Leibler divergence. This effectively translates to attempting to estimate, for each image, the bivariate distribution that defines the blurred target.
+
+The mean squared error (MSE) on the training images and validation images was calculated after each epoch (training the network on all training images). MSE provides a more intuitive measure of performance. Given that images were 96x96 pixel images, the worst performance the network could achieve would be $96^{2}=9216$. But, assuming that a randomly initialized network could guess at least 0.5 of the target vector, performance should instead be compared to an MSE of $48^{2}=2304$.
+
+\section{Results}
+
+Running on an NVIDIA GTX960M, the network processed ~180 example images per second. Training was allowed to proceed until the network was trained for either 200 epochs.
+
+The network itself converged with an average MSE of 570 on the training set, and 590 on the test set. 
+
+
+\begin{figure}[t]
+\includegraphics[width=2.5cm, center]{task}
+\caption{Green dot to track} 
+\label{task}
+\centering
+\end{figure}
+
+
+\section{Discussion}
+
+The development of a cheap, research-grade eye-tracker would enable many more labs to incorporate this methodology into their work. Companies currently exist that attempt to do just this, but their packages are not yest robust enough for certain kinds of research. The present study attempted to design an even cheaper alternative, with at least comparable performance.
+
+Overall, the network did not achieve the desired $1^{\circ}$ accuracy. However, performance was substantially better than chance, and achieved at very low cost. Although the present system could not be used for most kinds of research, a number of potential modifications might make it useful. 
+
+\section{Future Directions}
+
+It would first be useful to assess this network's ability to track the gaze of a different participant. Although efforts were made to vary aspects of the training images (see Data), there is currently no guarantee that the network that the network was not overtrained by being presented only a single person.
+
+Along these lines, it would be beneficial to vary more systematically the training images. It is currently unknown on which kind of images the network had the most difficulty. For example, most of the data were collected indoors, but only a small subset of it was collected in a room with a window. It would be expected, therefore, that the network would not yet perform well out-of-doors.
+
+Finally, the network was trained with a relatively simple target. That is, the target was constrained to a square, $96x96$ pixels wide. The point of this was a demonstration that a relatively simple network could learn to accurately track gazes, without relying on preliminary processing--like the detection of an eye in an image. Indeed, the network did achieve approximately $2^{\circ}$ accuracy. However, to ultimately be useful, the network would need to be trained to track fixations across the size of an entire screen. Whether this could be acheived with additional data remains an open question. 
+
+
+\bibliographystyle{apacite}
+
+\setlength{\bibleftmargin}{.125in}
+\setlength{\bibindent}{-\bibleftmargin}
+
+\bibliography{CogSci_Template}
+
+
+\end{document}

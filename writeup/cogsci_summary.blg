@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: cogsci_summary.aux
+The style file: apacite.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: CogSci_Template.bib
+I was expecting a `,' or a `}'---line 223 of file CogSci_Template.bib
+ :  
+ :  Pages = {4511-4520}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 235 of file CogSci_Template.bib
+ : @phdthesis{huang2015tabletgaze
+ :                               ,
+I'm skipping whatever remains of this entry
+apacite.bst [2012/02/25 v6.01 APA bibliography style]
+Warning--No address in baluja1994non
+You've used 12 entries,
+            6735 wiz_defined-function locations,
+            1302 strings with 12914 characters,
+and the built_in function-call counts, 26667 in all, are:
+= -- 3309
+> -- 264
+< -- 1274
++ -- 1306
+- -- 24
+* -- 1697
+:= -- 4761
+add.period$ -- 58
+call.type$ -- 12
+change.case$ -- 211
+chr.to.int$ -- 0
+cite$ -- 25
+duplicate$ -- 730
+empty$ -- 1004
+format.name$ -- 460
+if$ -- 5022
+int.to.chr$ -- 0
+int.to.str$ -- 24
+missing$ -- 0
+newline$ -- 326
+num.names$ -- 96
+pop$ -- 498
+preamble$ -- 1
+purify$ -- 50
+quote$ -- 0
+skip$ -- 1739
+stack$ -- 0
+substring$ -- 1431
+swap$ -- 421
+text.length$ -- 44
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1280
+warning$ -- 1
+while$ -- 164
+width$ -- 0
+write$ -- 434
+(There were 2 error messages)

@@ -1,0 +1,362 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Baluja%
+\ \BBA {} Pomerleau%
+}{%
+Baluja%
+\ \BBA {} Pomerleau%
+}{%
+{\protect \APACyear {1994}}%
+}]{%
+baluja1994non}
+\APACinsertmetastar {%
+baluja1994non}%
+\begin{APACrefauthors}%
+Baluja, S.%
+\BCBT {}\ \BBA {} Pomerleau, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+\APACrefbtitle {Non-intrusive gaze tracking using artificial neural networks}
+  {Non-intrusive gaze tracking using artificial neural networks}\
+  \APACbVolEdTR{}{\BTR{}}.
+\newblock
+\APACaddressInstitution{}{DTIC Document}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Buswell%
+}{%
+Buswell%
+}{%
+{\protect \APACyear {1922}}%
+}]{%
+buswell1922}
+\APACinsertmetastar {%
+buswell1922}%
+\begin{APACrefauthors}%
+Buswell, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1922}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Fundamental readings habits, a study of their
+  development} {Fundamental readings habits, a study of their
+  development}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Chicago University Press}{}{}{1409--1412}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ghosh%
+, Nandy%
+\BCBL {}\ \BBA {} Manna%
+}{%
+Ghosh%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+ghosh2015real}
+\APACinsertmetastar {%
+ghosh2015real}%
+\begin{APACrefauthors}%
+Ghosh, S.%
+, Nandy, T.%
+\BCBL {}\ \BBA {} Manna, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Real Time Eye Detection and Tracking Method for Driver
+  Assistance System} {Real time eye detection and tracking method for driver
+  assistance system}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Advancements of Medical Electronics} {Advancements of
+  medical electronics}\ (\BPGS\ 13--25).
+\newblock
+\APACaddressPublisher{}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Glorot%
+, Bordes%
+\BCBL {}\ \BBA {} Bengio%
+}{%
+Glorot%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2011}}%
+}]{%
+glorot2011deep}
+\APACinsertmetastar {%
+glorot2011deep}%
+\begin{APACrefauthors}%
+Glorot, X.%
+, Bordes, A.%
+\BCBL {}\ \BBA {} Bengio, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep sparse rectifier neural networks} {Deep sparse
+  rectifier neural networks}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {International Conference on Artificial Intelligence and
+  Statistics} {International conference on artificial intelligence and
+  statistics}\ (\BPGS\ 315--323).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hopstaken%
+, van~der Linden%
+, Bakker%
+, Kompier%
+\BCBL {}\ \BBA {} Leung%
+}{%
+Hopstaken%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+hopstaken2016}
+\APACinsertmetastar {%
+hopstaken2016}%
+\begin{APACrefauthors}%
+Hopstaken, J.%
+, van~der Linden, D.%
+, Bakker, A.%
+, Kompier, M.%
+\BCBL {}\ \BBA {} Leung, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Shifts in Attention During Mental Fatigue: Evidence From
+  Subjective, Behavioral, Physiological, and Eye-Tracking Data.} {Shifts in
+  attention during mental fatigue: Evidence from subjective, behavioral,
+  physiological, and eye-tracking data.}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of experimental psychology. Human perception
+  and performance}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Huang%
+, Veeraraghavan%
+\BCBL {}\ \BBA {} Sabharwal%
+}{%
+Huang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+huang2015tabletgaze}
+\APACinsertmetastar {%
+huang2015tabletgaze}%
+\begin{APACrefauthors}%
+Huang, Q.%
+, Veeraraghavan, A.%
+\BCBL {}\ \BBA {} Sabharwal, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {TabletGaze: A Dataset and Baseline Algorithms for
+  Unconstrained Appearance-based Gaze Estimation in Mobile Tablets}
+  {Tabletgaze: A dataset and baseline algorithms for unconstrained
+  appearance-based gaze estimation in mobile tablets}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1508.01244}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+LeCun%
+, Bottou%
+, Bengio%
+\BCBL {}\ \BBA {} Haffner%
+}{%
+LeCun%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1998}}%
+}]{%
+lecun1998gradient}
+\APACinsertmetastar {%
+lecun1998gradient}%
+\begin{APACrefauthors}%
+LeCun, Y.%
+, Bottou, L.%
+, Bengio, Y.%
+\BCBL {}\ \BBA {} Haffner, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Gradient-based learning applied to document recognition}
+  {Gradient-based learning applied to document recognition}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the IEEE}{86}{11}{2278--2324}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Srivastava%
+, Hinton%
+, Krizhevsky%
+, Sutskever%
+\BCBL {}\ \BBA {} Salakhutdinov%
+}{%
+Srivastava%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+srivastava2014dropout}
+\APACinsertmetastar {%
+srivastava2014dropout}%
+\begin{APACrefauthors}%
+Srivastava, N.%
+, Hinton, G.%
+, Krizhevsky, A.%
+, Sutskever, I.%
+\BCBL {}\ \BBA {} Salakhutdinov, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Dropout: A simple way to prevent neural networks from
+  overfitting} {Dropout: A simple way to prevent neural networks from
+  overfitting}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Journal of Machine Learning
+  Research}{15}{1}{1929--1958}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wood%
+\ \protect \BOthers {.}}{%
+Wood%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+wood2015iccv}
+\APACinsertmetastar {%
+wood2015iccv}%
+\begin{APACrefauthors}%
+Wood, E.%
+, Baltrusaitis, T.%
+, Zhang, X.%
+, Sugano, Y.%
+, Robinson, P.%
+\BCBL {}\ \BBA {} Bulling, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Rendering of Eyes for Eye-Shape Registration and Gaze
+  Estimation} {Rendering of eyes for eye-shape registration and gaze
+  estimation}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proc. of the IEEE International Conference on Computer
+  Vision (ICCV 2015).} {Proc. of the ieee international conference on computer
+  vision (iccv 2015).}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+X.~Zhang%
+, Sugano%
+, Fritz%
+\BCBL {}\ \BBA {} Bulling%
+}{%
+X.~Zhang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+zhang15cvpr}
+\APACinsertmetastar {%
+zhang15cvpr}%
+\begin{APACrefauthors}%
+Zhang, X.%
+, Sugano, Y.%
+, Fritz, M.%
+\BCBL {}\ \BBA {} Bulling, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{June}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Appearance-based Gaze Estimation in the Wild}
+  {Appearance-based gaze estimation in the wild}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proc. of the IEEE International Conference on Computer
+  Vision and Pattern Recognition (CVPR).} {Proc. of the ieee international
+  conference on computer vision and pattern recognition (cvpr).}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Z.~Zhang%
+\ \protect \BOthers {.}}{%
+Z.~Zhang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+zhang2015classification}
+\APACinsertmetastar {%
+zhang2015classification}%
+\begin{APACrefauthors}%
+Zhang, Z.%
+, Kubo, T.%
+, Watanabe, J.%
+, Shibata, T.%
+, Ikeda, K.%
+, Bando, T.%
+\BDBL {}Egawa, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A classification method between novice and experienced
+  drivers using eye tracking data and Gaussian process classifier} {A
+  classification method between novice and experienced drivers using eye
+  tracking data and gaussian process classifier}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Society of Instrument and Control Engineers of Japan
+  (SICE), 2015 54th Annual Conference of the} {Society of instrument and
+  control engineers of japan (sice), 2015 54th annual conference of the}\
+  (\BPGS\ 1409--1412).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zugal%
+\ \BBA {} Pinggera%
+}{%
+Zugal%
+\ \BBA {} Pinggera%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+zugal2015low}
+\APACinsertmetastar {%
+zugal2015low}%
+\begin{APACrefauthors}%
+Zugal, S.%
+\BCBT {}\ \BBA {} Pinggera, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Low-Cost Eye-Trackers: Useful for Information Systems
+  Research?} {Low-cost eye-trackers: Useful for information systems
+  research?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1511.04308}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
