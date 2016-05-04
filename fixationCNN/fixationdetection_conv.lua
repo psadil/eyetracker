@@ -1,8 +1,6 @@
 require 'dp'
 require 'torchx'
 
---psadil:1462239992:1, train: 589.5, target: 612.8
-
 --[[command line arguments]]--
 cmd = torch.CmdLine()
 cmd:text()
@@ -10,7 +8,7 @@ cmd:text('Facial Keypoint detector using Convolution Neural Network Training/Opt
 cmd:text('Example:')
 cmd:text('$> th facialkeypointdetector.lua --batchSize 128 --momentum 0.5')
 cmd:text('Options:')
-cmd:option('--learningRate', 0.5, 'learning rate at t=0')
+cmd:option('--learningRate', 0.9, 'learning rate at t=0')
 cmd:option('--maxOutNorm', 2, 'max norm each layers output neuron weights')
 cmd:option('--momentum', .9, 'momentum')
 cmd:option('--padding', true, 'add math.floor(kernelSize/2) padding to the input of each convolution') 
@@ -34,7 +32,6 @@ cmd:option('--activation', 'ReLU', 'transfer function like ReLU, Tanh, Sigmoid')
 cmd:option('--dropout', true, 'use dropout')
 cmd:option('--dropoutProb', '{0.2,0.2,0.5,0.5,0.8,.8}', 'dropout probabilities')
 cmd:option('--accUpdate', false, 'accumulate gradients inplace')
-cmd:option('--submissionFile', 'hheellpp', 'Kaggle submission will be saved to a file with this name')
 cmd:option('--progress', true, 'print progress bar')
 cmd:option('--validRatio', 1/10, 'proportion of dataset used for cross-validation')
 cmd:option('--silent', false, 'dont print anything to stdout')
@@ -49,7 +46,6 @@ end
   -- assert(paths.filep(opt.xpPath), opt.xpPath..' does not exist')
 --end
 
---psadil:1462147091:1
 torch.setnumthreads(8)
 torch.setdefaulttensortype('torch.FloatTensor')
 
@@ -82,11 +78,10 @@ function FixationDetection(dataPath, validRatio)
    nValid = math.floor(eye:size()*validRatio)
    nTrain = eye:size() - nValid
    
-   -- construct trainer
---   y = target:narrow(1,1,nTrain)
-   y = target:clone()
- -- y : (batch_size, num_keypoints*2)
-   -- Y : (batch_size, num_keypoints*2, 98)
+   -- construct trainer, 
+   --y = target:narrow(1,1,nTrain)
+   --y = target:clone()
+   y = target
    Y = torch.FloatTensor(y:size(1), y:size(2), 98):zero()
    local pixels = torch.range(0,97)
    local stdv = 10
@@ -104,7 +99,6 @@ function FixationDetection(dataPath, validRatio)
             kp = 98
           end
            local new_kp = new_keypoints[j]
-           --new_kp[kp]=1
             new_kp:add(pixels, -kp)
             new_kp:cmul(new_kp)
             new_kp:div(2*stdv*stdv)
@@ -114,66 +108,19 @@ function FixationDetection(dataPath, validRatio)
         else
             k = k + 1
          end
-        
-        
       end
    end
-   
-   
-   
    
    -- construct trainers
    local input_v, target_v = dp.ImageView(), dp.SequenceView()
    input_v:forward('bchw', input:narrow(1, 1, nTrain))
    target_v:forward('bwc', Y:narrow(1, 1, nTrain))
-   -- construct dataset
-  -- local ds = dp.DataSet{inputs=input_v,targets=target_v,which_set='train'}
-  -- ds:ioShapes('bchw', 'bwc')
-   
-   
-  --y = target:narrow(1,nTrain+1,nValid)
- -- y : (batch_size, num_keypoints*2)
-   -- Y : (batch_size, num_keypoints*2, 98)
-  -- Y = torch.FloatTensor(y:size(1), y:size(2), 98):zero()
-  -- local pixels = torch.range(0,97)
-  -- local stdv = .8
-  -- local k = 0
-  -- for i=1,y:size(1) do  -- for each pixel
-   --   local keypoints = y[i]
-    --  local new_keypoints = Y[i]
-    --  for j=1,y:size(2) do  -- for each keypoint
-     --    local kp = keypoints[j]
-      --   if kp ~= -1 then
-       --     local new_kp = new_keypoints[j]
-        --    new_kp:add(pixels, -kp)
-         --   new_kp:cmul(new_kp)
-          --  new_kp:div(2*stdv*stdv)
-          --  new_kp:mul(-1)
-         --   new_kp:exp(new_kp)
-          --  new_kp:div(math.sqrt(2*math.pi)*stdv)
-         --else
-          --  k = k + 1
-        -- end
-     -- end
-  -- end
-   
-   
-   
-   
+      
       -- construct valids
    local input_tar, target_tar = dp.ImageView(), dp.SequenceView()
    input_tar:forward('bchw', input:narrow(1, nTrain+1, nValid))
    target_tar:forward('bwc', Y:narrow(1, nTrain+1, nValid))
    
-
-  -- local trainInput = dp.ImageView('bchw', input:narrow(1, 1, nTrain))
-  -- local trainTarget = dp.SequenceView('b', target:narrow(1, 1, nTrain))
- --  local validInput = dp.ImageView('bchw', input:narrow(1, nTrain+1, nValid))
- --  local validTarget = dp.SequenceView('bwc', Y:narrow(1, nTrain+1, nValid))
-
---   trainTarget:setClasses({'bg', 'fixation'})
---   validTarget:setClasses({'bg', 'fixation'})
-
    -- 3. wrap views into datasets
 
    local train = dp.DataSet{inputs=input_v,targets=target_v,which_set='train'}
@@ -183,11 +130,8 @@ function FixationDetection(dataPath, validRatio)
 
    local ds = dp.DataSource{train_set=train,valid_set=valid}
    ds:ioShapes('bchw', 'bwc')
---   ds:classes{'bg', 'fixation'}
    return ds
 end
-
---assert(opt.submissionFile ~= '', 'provide filename, e.g.: --submissionFile submission12.csv')
 
 
 opt.channelSize = table.fromString(opt.channelSize)
@@ -225,7 +169,6 @@ if opt.xpPath ~= '' then
    end
    print"running"
    xp:maxEpoch(xp:maxEpoch()+opt.maxEpoch)
-   --xp:maxTries(opt.maxTries)
    xp:run(ds)
    torch.save('experiment.dat', xp)
    os.exit()
@@ -297,7 +240,6 @@ cnn:add(nn.Reshape(2,98))
 cnn:add(nn.MultiSoftMax())
 
 --[[Propagators]]--
---baseline = ds_face:loadBaseline()
 
 logModule = nn.Sequential()
 logModule:add(nn.AddConstant(0.00000001)) -- fixes log(0)=NaN errors
@@ -325,20 +267,12 @@ valid = dp.Evaluator{
    sampler = dp.Sampler{batch_size = opt.batchSize},
    feedback = dp.FacialKeypointFeedback{precision=98}
 }
---test = dp.Evaluator{
- --  feedback = dp.FKDKaggle{
-  --    submission = ds:loadSubmission(), 
-   --   file_name = opt.submissionFile
-  -- },
-  -- sampler = dp.Sampler{batch_size = opt.batchSize}
---}
 
 --[[Experiment]]--
 xp = dp.Experiment{
    model = cnn,
    optimizer = train,
    validator = valid,
-  -- tester = test,
    observer = {
       dp.FileLogger(),
       dp.EarlyStopper{
@@ -366,8 +300,6 @@ if not opt.silent then
    print(cnn)
 end
 
---print(ds)
---print(cnn)
-xp:run(ds)
 
+xp:run(ds)
 torch.save('experiment.dat', xp)
