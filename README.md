@@ -37,8 +37,6 @@ For each of these, run: luarocks install [nameOfPackage]
 
 (network cannot be run without data. Currently, datafiles too large to be uploaded to github. Please contact Patrick (psadil@gmail.com) if you would like to test this out)
 
-(DOUBLE NOTE: apparently I deleted the .dat file with the last 4000 labels! So, at best, this network can only be trained on ~7000 examples)
-
 1. Clone repository: `git clone https://github.com/psadil/eyetracker.git`
 2. Unpack data files within fixationCNN
 3. Run CNN: 'qlua fixationdetection_conv.lua'
